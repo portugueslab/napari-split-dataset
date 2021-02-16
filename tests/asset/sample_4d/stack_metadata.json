@@ -1,0 +1,1 @@
+{"shape_full": [20, 3, 10, 10], "shape_block": [20, 1, 10, 10], "crop_start": [0, 0, 0, 0], "crop_end": [0, 0, 0, 0], "padding": [0, 0, 0, 0], "resolution": [1, 1, 1, 1], "axis_order": "tzyx"}

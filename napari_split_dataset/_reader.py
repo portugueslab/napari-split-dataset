@@ -22,17 +22,18 @@ def read_directory(path):
         data = SplitDataset(path)
     except:
         return None
-    data = data.as_dask()
 
     if len(data.shape) > 3:
         # set contrast limits for 4D data
         # otherwise napari tries to set them after reading everything, which would take too long if the data was large.
-        data_for_contrast = data[::50, ::3, ::20, ::20].compute()
+        data_for_contrast = data[min(2, data.shape[0]-1):min(7, data.shape[0]), :, :, :]
         contrast_limits = (np.percentile(data_for_contrast, 0.1), np.percentile(data_for_contrast, 99.9))
 
+        data = data.as_dask()
         # optional kwargs for the corresponding viewer.add_* method
         add_kwargs = {"contrast_limits": contrast_limits,}
     else:
+        data = data[:,:,:]
         add_kwargs = {}
 
     layer_type = "image"  # optional, default is "image"

@@ -3,19 +3,53 @@
 """Tests for `napari_split_dataset` package."""
 
 import pytest
+from napari_split_dataset import _reader
+from numpy import ndarray
+from dask.array.core import Array
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
+@pytest.mark.parametrize(
+    "path",
+    [
+        "fake.h5",
+        "fake.hdf5",
+        "fake.tif",
+        "fake",
+        "asset/sample_3d",
+        "asset/sample_4d",
+        "asset/empty",
+        "asset/array.h5",
+        "asset/dict_stack.h5",
+        "asset/dict_shift.h5",
+    ],
+)
+def test_reader(path):
+    reader = _reader.napari_get_reader(path)
+    assert callable(reader)
 
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+@pytest.mark.parametrize(
+    "path",
+    [
+        "asset/sample_3d",
+        "asset/sample_4d",
+        "asset/empty",
+        "asset/array.h5",
+    ],
+)
+def test_dir_reader(path):
+    data = _reader.read_directory(path)
+    assert isinstance(data[0][0], (ndarray, Array))
 
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
-
+@pytest.mark.parametrize(
+    "path",
+    [
+        "asset/sample_4d",
+        "asset/empty",
+        "asset/array.h5",
+        "asset/dict_stack.h5",
+        "asset/dict_shift.h5",
+    ],
+)
+def test_h5_reader(path):
+    data = _reader.read_hdf5(path)
+    assert isinstance(data[0][0], ndarray)
