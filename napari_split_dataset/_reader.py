@@ -23,7 +23,7 @@ def read_directory(path):
     except:
         return None
 
-    if len(data.shape) > 3:
+    if len(data.shape) > 4:
         # set contrast limits for 4D data
         # otherwise napari tries to set them after reading everything, which would take too long if the data was large.
         data_for_contrast = data[min(2, data.shape[0]-1):min(7, data.shape[0]), :, :, :]
