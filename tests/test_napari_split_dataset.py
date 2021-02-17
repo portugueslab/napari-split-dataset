@@ -20,7 +20,7 @@ from . import ASSETS_PATH
         ("fake", False),
         (ASSETS_PATH / "sample_3d", True),
         (ASSETS_PATH / "sample_4d", True),
-        (ASSETS_PATH / "empty", True),
+        (ASSETS_PATH / "random", True),
         (ASSETS_PATH / "array.h5", True),
         (ASSETS_PATH / "dict_stack.h5", True),
         (ASSETS_PATH / "dict_shift.h5", True),
@@ -36,7 +36,7 @@ def test_reader(path, expected):
     [
         (ASSETS_PATH / "sample_3d", ndarray),
         (ASSETS_PATH / "sample_4d", Array),
-        (ASSETS_PATH / "empty", type(None)),
+        (ASSETS_PATH / "random", type(None)),
         (ASSETS_PATH / "array.h5", type(None)),
     ],
 )
@@ -51,7 +51,7 @@ def test_dir_reader(path, expected):
     "path, expected",
     [
         (ASSETS_PATH / "sample_4d", type(None)),
-        (ASSETS_PATH / "empty", type(None)),
+        (ASSETS_PATH / "random", type(None)),
         (ASSETS_PATH / "array.h5", ndarray),
         (ASSETS_PATH / "dict_stack.h5", ndarray),
         (ASSETS_PATH / "dict_shift.h5", type(None)),
