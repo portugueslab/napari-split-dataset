@@ -17,8 +17,9 @@ jobs:
           pip install .[dev]
       - name: Lint
         run: |
-          black ./ --check
-          flake8
+          black . --check
+          flake8 .
+          isort . --diff
   test:
     needs: lint
     runs-on: ubuntu-latest

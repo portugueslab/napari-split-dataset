@@ -5,10 +5,10 @@
 import pytest
 from dask.array.core import Array
 from numpy import ndarray
-
+from . import ASSETS_PATH
 from napari_split_dataset import _reader
 
-from . import ASSETS_PATH
+
 
 
 @pytest.mark.parametrize(
