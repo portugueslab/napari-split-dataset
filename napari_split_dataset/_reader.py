@@ -52,7 +52,11 @@ def read_directory(path):
 def read_hdf5(path):
     # read the image if the h5 file is an array or part of split dataset files
 
-    data = fl.load(path)
+    try:
+        data = fl.load(path)
+    except (OSError, RuntimeError):
+        return None
+
     if not isinstance(data, (np.ndarray, dict)):
         return None
     elif isinstance(data, dict):

@@ -8,51 +8,57 @@ from numpy import ndarray
 
 from napari_split_dataset import _reader
 
+from . import ASSETS_PATH
+
 
 @pytest.mark.parametrize(
-    "path",
+    "path, expected",
     [
-        "fake.h5",
-        "fake.hdf5",
-        "fake.tif",
-        "fake",
-        "asset/sample_3d",
-        "asset/sample_4d",
-        "asset/empty",
-        "asset/array.h5",
-        "asset/dict_stack.h5",
-        "asset/dict_shift.h5",
+        ("fake.h5", True),
+        ("fake.hdf5", True),
+        ("fake.tif", False),
+        ("fake", False),
+        (ASSETS_PATH / "sample_3d", True),
+        (ASSETS_PATH / "sample_4d", True),
+        (ASSETS_PATH / "empty", True),
+        (ASSETS_PATH / "array.h5", True),
+        (ASSETS_PATH / "dict_stack.h5", True),
+        (ASSETS_PATH / "dict_shift.h5", True),
     ],
 )
-def test_reader(path):
+def test_reader(path, expected):
     reader = _reader.napari_get_reader(path)
-    assert callable(reader)
+    assert callable(reader) == expected
 
 
 @pytest.mark.parametrize(
-    "path",
+    "path, expected",
     [
-        "asset/sample_3d",
-        "asset/sample_4d",
-        "asset/empty",
-        "asset/array.h5",
+        (ASSETS_PATH / "sample_3d", ndarray),
+        (ASSETS_PATH / "sample_4d", Array),
+        (ASSETS_PATH / "empty", type(None)),
+        (ASSETS_PATH / "array.h5", type(None)),
     ],
 )
-def test_dir_reader(path):
+def test_dir_reader(path, expected):
     data = _reader.read_directory(path)
-    assert isinstance(data[0][0], (ndarray, Array))
+    if isinstance(data, list):
+        data = data[0][0]
+    assert isinstance(data, expected)
 
 
 @pytest.mark.parametrize(
-    "path",
+    "path, expected",
     [
-        "asset/sample_4d",
-        "asset/empty",
-        "asset/array.h5",
-        "asset/dict_stack.h5",
-        "asset/dict_shift.h5",
+        (ASSETS_PATH / "sample_4d", type(None)),
+        (ASSETS_PATH / "empty", type(None)),
+        (ASSETS_PATH / "array.h5", ndarray),
+        (ASSETS_PATH / "dict_stack.h5", ndarray),
+        (ASSETS_PATH / "dict_shift.h5", type(None)),
     ],
 )
-def test_h5_reader(path):
+def test_h5_reader(path, expected):
     data = _reader.read_hdf5(path)
-    assert isinstance(data[0][0], ndarray)
+    if isinstance(data, list):
+        data = data[0][0]
+    assert isinstance(data, expected)
