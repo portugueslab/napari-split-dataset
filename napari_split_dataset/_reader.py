@@ -20,7 +20,7 @@ def read_directory(path):
 
     try:
         data = SplitDataset(path)
-    except:
+    except (IndexError, KeyError, ValueError):
         return None
 
     if len(data.shape) > 3:
