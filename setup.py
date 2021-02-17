@@ -19,6 +19,9 @@ with open('requirements.txt') as f:
         if len(stripped) > 0:
             requirements.append(stripped)
 
+with open("requirements_dev.txt") as f:
+    requirements_dev = f.read().splitlines()
+
 setup_requirements = ['pytest-runner', ]
 
 test_requirements = ['pytest>=3', ]
@@ -39,6 +42,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="hdf5/split-dataset file reader for napari",
+    extras_require=dict(dev=requirements_dev),
     install_requires=requirements,
     license="GNU General Public License v3",
     # long_description=readme + '\n\n' + history,
