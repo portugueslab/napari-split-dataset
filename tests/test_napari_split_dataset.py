@@ -7,6 +7,7 @@ from napari_split_dataset import _reader
 from numpy import ndarray
 from dask.array.core import Array
 
+
 @pytest.mark.parametrize(
     "path",
     [
@@ -25,6 +26,7 @@ from dask.array.core import Array
 def test_reader(path):
     reader = _reader.napari_get_reader(path)
     assert callable(reader)
+
 
 @pytest.mark.parametrize(
     "path",
