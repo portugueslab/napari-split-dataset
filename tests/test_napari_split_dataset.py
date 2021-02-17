@@ -9,8 +9,6 @@ from . import ASSETS_PATH
 from napari_split_dataset import _reader
 
 
-
-
 @pytest.mark.parametrize(
     "path, expected",
     [
