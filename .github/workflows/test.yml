@@ -18,7 +18,7 @@ jobs:
       - name: Lint
         run: |
           black ./ --check
-          flake8
+#          flake8
 #  test:
 #    needs: lint
 #    runs-on: ubuntu-latest

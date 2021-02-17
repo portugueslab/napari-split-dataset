@@ -11,13 +11,8 @@ with open('README.rst') as readme_file:
 # with open('HISTORY.rst') as history_file:
 #     history = history_file.read()
 
-requirements = []
-with open('requirements.txt') as f:
-    for line in f:
-        splitted = line.split("#")
-        stripped = splitted[0].strip()
-        if len(stripped) > 0:
-            requirements.append(stripped)
+with open("requirements.txt") as f:
+    requirements = f.read().splitlines()
 
 with open("requirements_dev.txt") as f:
     requirements_dev = f.read().splitlines()
