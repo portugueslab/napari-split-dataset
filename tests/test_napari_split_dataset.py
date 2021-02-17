@@ -3,9 +3,10 @@
 """Tests for `napari_split_dataset` package."""
 
 import pytest
-from napari_split_dataset import _reader
-from numpy import ndarray
 from dask.array.core import Array
+from numpy import ndarray
+
+from napari_split_dataset import _reader
 
 
 @pytest.mark.parametrize(

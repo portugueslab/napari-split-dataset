@@ -1,8 +1,9 @@
 """Main module."""
-from napari_plugin_engine import napari_hook_implementation
 from pathlib import Path
-import numpy as np
+
 import flammkuchen as fl
+import numpy as np
+from napari_plugin_engine import napari_hook_implementation
 from split_dataset import SplitDataset
 
 
