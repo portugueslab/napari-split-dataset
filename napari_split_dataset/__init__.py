@@ -1,6 +1,6 @@
-"""Top-level package for napari-split-dataset."""
+"""hdf5/split-dataset file reader for napari"""
 
-__author__ = """You Wu"""
+__author__ = """You Wu @portugueslab"""
 __version__ = "0.1.0"
 
-from ._reader import napari_get_reader
+from napari_split_dataset.napari_split_dataset import napari_get_reader

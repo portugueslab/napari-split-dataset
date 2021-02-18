@@ -18,7 +18,6 @@ def napari_get_reader(path):
 
 def read_directory(path):
     # read the image stack from a split dataset directory
-
     try:
         data = SplitDataset(path)
     except (IndexError, KeyError, ValueError):
@@ -28,16 +27,13 @@ def read_directory(path):
         # set contrast limits for 4D data.
         # otherwise napari tries to set them after reading everything,
         # which would take too long if the data was large.
-        data_for_contrast = data[
-            min(2, data.shape[0] - 1) : min(7, data.shape[0]), :, :, :
-        ]
+        partial = data[min(2, data.shape[0] - 1) : min(7, data.shape[0]), :, :, :]
         contrast_limits = (
-            np.percentile(data_for_contrast, 0.1),
-            np.percentile(data_for_contrast, 99.9),
+            np.percentile(partial, 0.1),
+            np.percentile(partial, 99.9),
         )
 
         data = data.as_dask()  # read as a dask array
-        # optional kwargs for the corresponding viewer.add_* method
         add_kwargs = {
             "contrast_limits": contrast_limits,
         }
@@ -45,13 +41,12 @@ def read_directory(path):
         data = data[:, :, :]
         add_kwargs = {}
 
-    layer_type = "image"  # optional, default is "image"
+    layer_type = "image"  # default
     return [(data, add_kwargs, layer_type)]
 
 
 def read_hdf5(path):
     # read the image if the h5 file is an array or part of split dataset files
-
     try:
         data = fl.load(path)
     except (OSError, RuntimeError):

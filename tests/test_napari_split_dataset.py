@@ -2,13 +2,15 @@
 
 """Tests for `napari_split_dataset` package."""
 
+from pathlib import Path
+
 import pytest
 from dask.array.core import Array
 from numpy import ndarray
 
-from napari_split_dataset import _reader
+from napari_split_dataset import napari_split_dataset
 
-from . import ASSETS_PATH
+ASSETS_PATH = Path(__file__).parent / "assets"
 
 
 @pytest.mark.parametrize(
@@ -27,7 +29,7 @@ from . import ASSETS_PATH
     ],
 )
 def test_reader(path, expected):
-    reader = _reader.napari_get_reader(path)
+    reader = napari_split_dataset.napari_get_reader(path)
     assert callable(reader) == expected
 
 
@@ -41,7 +43,7 @@ def test_reader(path, expected):
     ],
 )
 def test_dir_reader(path, expected):
-    data = _reader.read_directory(path)
+    data = napari_split_dataset.read_directory(path)
     if isinstance(data, list):
         data = data[0][0]
     assert isinstance(data, expected)
@@ -50,15 +52,14 @@ def test_dir_reader(path, expected):
 @pytest.mark.parametrize(
     "path, expected",
     [
-        (ASSETS_PATH / "sample_4d", type(None)),
-        (ASSETS_PATH / "random", type(None)),
+        (ASSETS_PATH / "sample_3d", type(None)),
         (ASSETS_PATH / "array.h5", ndarray),
         (ASSETS_PATH / "dict_stack.h5", ndarray),
         (ASSETS_PATH / "dict_shift.h5", type(None)),
     ],
 )
 def test_h5_reader(path, expected):
-    data = _reader.read_hdf5(path)
+    data = napari_split_dataset.read_hdf5(path)
     if isinstance(data, list):
         data = data[0][0]
     assert isinstance(data, expected)

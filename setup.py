@@ -7,9 +7,6 @@ from setuptools import find_packages, setup
 with open("README.rst") as readme_file:
     readme = readme_file.read()
 
-# with open('HISTORY.rst') as history_file:
-#     history = history_file.read()
-
 with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
@@ -25,13 +22,13 @@ test_requirements = [
 ]
 
 setup(
-    author="You Wu",
-    author_email="ykure.w@gmail.com",
+    author="You Wu @portugueslab",
+    author_email="youkwu@neuro.mpg.de",
     python_requires=">=3.5",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
@@ -42,8 +39,7 @@ setup(
     description="hdf5/split-dataset file reader for napari",
     extras_require=dict(dev=requirements_dev),
     install_requires=requirements,
-    license="GNU General Public License v3",
-    # long_description=readme + '\n\n' + history,
+    license="MIT",
     include_package_data=True,
     keywords="napari_split_dataset",
     name="napari_split_dataset",
