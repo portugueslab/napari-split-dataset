@@ -2,7 +2,7 @@
 
 """The setup script."""
 
-from setuptools import find_packages, setup
+from setuptools import find_namespace_packages, setup
 
 with open("README.rst") as readme_file:
     readme = readme_file.read()
@@ -38,12 +38,15 @@ setup(
     ],
     description="hdf5/split-dataset file reader for napari",
     extras_require=dict(dev=requirements_dev),
+    entry_points={
+        'napari.plugin': ['split-dataset = napari_split_dataset'],
+    },
     install_requires=requirements,
     license="MIT",
     include_package_data=True,
     keywords="napari_split_dataset",
     name="napari_split_dataset",
-    packages=find_packages(include=["napari_split_dataset", "napari_split_dataset.*"]),
+    packages=find_namespace_packages(exclude=("docs", "tests*")),
     setup_requires=setup_requirements,
     test_suite="tests",
     tests_require=test_requirements,
