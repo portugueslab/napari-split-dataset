@@ -39,7 +39,7 @@ setup(
     description="hdf5/split-dataset file reader for napari",
     extras_require=dict(dev=requirements_dev),
     entry_points={
-        'napari.plugin': ['split-dataset = napari_split_dataset'],
+        "napari.plugin": ["split-dataset = napari_split_dataset"],
     },
     install_requires=requirements,
     license="MIT",
