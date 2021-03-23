@@ -56,6 +56,7 @@ def test_dir_reader(path, expected):
         (ASSETS_PATH / "array.h5", ndarray),
         (ASSETS_PATH / "dict_stack.h5", ndarray),
         (ASSETS_PATH / "dict_shift.h5", type(None)),
+        (ASSETS_PATH / "nodict.h5", type(None)),
     ],
 )
 def test_h5_reader(path, expected):
