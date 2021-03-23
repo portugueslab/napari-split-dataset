@@ -3,9 +3,9 @@
 """Tests for `napari_split_dataset` package."""
 
 from pathlib import Path
+from split_dataset import SplitDataset
 
 import pytest
-from dask.array.core import Array
 from numpy import ndarray
 
 from napari_split_dataset import napari_split_dataset
@@ -37,7 +37,7 @@ def test_reader(path, expected):
     "path, expected",
     [
         (ASSETS_PATH / "sample_3d", ndarray),
-        (ASSETS_PATH / "sample_4d", Array),
+        (ASSETS_PATH / "sample_4d", SplitDataset),
         (ASSETS_PATH / "random", type(None)),
         (ASSETS_PATH / "array.h5", type(None)),
     ],
