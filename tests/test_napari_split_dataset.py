@@ -3,10 +3,10 @@
 """Tests for `napari_split_dataset` package."""
 
 from pathlib import Path
-from split_dataset import SplitDataset
 
 import pytest
 from numpy import ndarray
+from split_dataset import SplitDataset
 
 from napari_split_dataset import napari_split_dataset
 
