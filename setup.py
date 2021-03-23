@@ -4,7 +4,7 @@
 
 from setuptools import find_namespace_packages, setup
 
-with open("README.rst") as readme_file:
+with open("README.md") as readme_file:
     readme = readme_file.read()
 
 with open("requirements.txt") as f:
@@ -37,6 +37,8 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     description="hdf5/split-dataset file reader for napari",
+    long_description=readme,
+    long_description_content_type="text/markdown",
     extras_require=dict(dev=requirements_dev),
     entry_points={
         "napari.plugin": ["split-dataset = napari_split_dataset"],
