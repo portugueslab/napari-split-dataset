@@ -33,7 +33,6 @@ def read_directory(path):
             np.percentile(partial, 99.9),
         )
 
-        data = data.as_dask()  # read as a dask array
         add_kwargs = {
             "contrast_limits": contrast_limits,
         }
