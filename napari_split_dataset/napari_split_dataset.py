@@ -38,7 +38,7 @@ def read_directory(path):
         data = data[:, :, :]
         add_kwargs = {}
 
-    layer_type = "image"  # default
+    layer_type = "image"
     return [(data, add_kwargs, layer_type)]
 
 
@@ -59,4 +59,5 @@ def read_hdf5(path):
             return None
 
     add_kwargs = {}
-    return [(data, add_kwargs)]
+    layer_type = "image"
+    return [(data, add_kwargs, layer_type)]
