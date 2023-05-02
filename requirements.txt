@@ -1,4 +1,0 @@
-napari_plugin_engine
-numpy
-flammkuchen
-split_dataset
