@@ -9,7 +9,7 @@
 
 
 
-# hdf5/split-dataset file reader for napari
+# split-dataset/hdf5 file reader for napari
 
 A `napari` plugin for visualising [`SplitDataset`](https://github.com/portugueslab/split_dataset) objects. This package has been developed in the [Portugues lab](http://www.portugueslab.com).
 

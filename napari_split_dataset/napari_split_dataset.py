@@ -3,11 +3,9 @@ from pathlib import Path
 
 import flammkuchen as fl
 import numpy as np
-from napari_plugin_engine import napari_hook_implementation
 from split_dataset import SplitDataset
 
 
-@napari_hook_implementation
 def napari_get_reader(path):
     path = Path(path)
     if path.is_dir():
@@ -40,7 +38,7 @@ def read_directory(path):
         data = data[:, :, :]
         add_kwargs = {}
 
-    layer_type = "image"  # default
+    layer_type = "image"
     return [(data, add_kwargs, layer_type)]
 
 
@@ -61,4 +59,5 @@ def read_hdf5(path):
             return None
 
     add_kwargs = {}
-    return [(data, add_kwargs)]
+    layer_type = "image"
+    return [(data, add_kwargs, layer_type)]

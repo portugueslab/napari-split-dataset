@@ -1,0 +1,10 @@
+name: napari-split-dataset
+contributions:
+  commands:
+  - id: napari-split-dataset.get_reader
+    python_name: napari_split_dataset.napari_split_dataset:napari_get_reader
+    title: Open SplitDataset files
+  readers:
+  - command: napari-split-dataset.get_reader
+    accepts_directories: true
+    filename_patterns: ["*.h5", "*.hdf5"]
